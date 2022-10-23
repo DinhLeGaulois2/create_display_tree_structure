@@ -1,0 +1,205 @@
+body {
+    background-color: #badeeb;
+    font-size: 1.3rem;
+    padding: 5px 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+input {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+li{
+    margin-bottom: 7px;
+}
+
+.container-note {
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: justify;
+    box-shadow: 2px 2px gray;
+    background-color: white;
+    padding: 3px 10px;
+    margin: 5px;
+}
+
+.title {
+    font-size: 3em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.img-expense {
+    width: 80px
+}
+
+img {
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 1px 1px gray;
+}
+
+table {
+    background-color: white;
+    color: black;
+}
+
+td {
+    margin: 5px auto;
+    padding: 5px 10px;
+    font-size: 1.5rem;
+}
+
+th {
+    background-color: black;
+    color: cyan;
+    padding: 5px 20px;
+    font-size: 1.7rem;
+}
+
+.toc {
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 1.5rem;
+}
+
+.tocBg {
+    background-color: black;
+    color: cyan;
+    padding: 3px 20px;
+    margin: 20px 5px 0;
+    border-radius: 7px
+}
+
+.note {
+    max-width: 400px;
+    text-align: justify;
+}
+
+.bgOrange {
+    background-color: #ffa500;
+}
+
+.bgGreen {
+    background-color: #90EE90;
+}
+
+.bgRed {
+    background-color: #fa4668;
+}
+
+.warning1 {
+    background-color: #339900;
+    color: black
+}
+
+.warning2 {
+    background-color: #99cc33;
+    color: black
+}
+
+.warning3 {
+    background-color: #ffcc00;
+    color: black
+}
+
+.warning4 {
+    background-color: #ff9966;
+    color: black
+}
+
+.warning5 {
+    background-color: #cc3300;
+    color: black
+}
+
+.showNumber {
+    background-color: #90EE90;
+    border: 1px solid black;
+    box-shadow: 2px 2px gray;
+    border-radius: 7px;
+    margin: 0 3px;
+}
+
+.total-count {
+    background-color: #404040;
+    color: yellow;
+    font-weight: bold;
+}
+
+.btn:hover {
+    color: orange;
+    cursor: pointer;
+}
+
+.btn {
+    padding: 3px 10px;
+    background-color: black;
+    color: cyan;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    box-shadow: 2px 2px gray;
+}
+
+.link:hover {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.bg-gray{
+    background-color: #d5d5d5;
+    padding: 3px 5px;
+}
+
+.hight-light{
+    background-color: #f9b6b6;
+    border: 1px solid red;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+.onTheWay {
+    font-weight: bold;
+    color: blue;
+}
+
+.container-active {
+    border: 2px solid black;
+    border-radius: 10px;
+    color: blue;
+    font-weight: bold;
+}
+
+.container-toc {
+    margin: 5px 0;
+    border: 3px solid black;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 15px;
+}
+
+.node-in-tree-title:hover {
+    background-color: aquamarine;
+    font-weight: bold;
+}
+
+.onTheWay {
+    font-weight: bold;
+}
+
+.activeComp {
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    color: blue;
+}
+
+.node-link:hover {
+    cursor: pointer;
+    background-color: black;
+    color: cyan;
+}

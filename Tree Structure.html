@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Structure</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./style/treeStyle.css">
+
+    <script src="./script/calculations.js"></script>
+    <script src="./script/global.js"></script>
+    <script src="./script/cstsNVars.js"></script>
+    <script src="./script/display.js"></script>
+    <script src="./script/generation.js"></script>
+</head>
+
+<body>
+    <br /><br />
+    <div class="title">Create and Display a Tree Structure</div>
+    <p align="center">[<a href="../../../../Programming.html">Programming</a>]</p>
+    <div class="container-note">
+        <h3>Aim:</h3>
+        <p>Using <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a> along with 3 basics
+            tools (<a href="https://en.wikipedia.org/wiki/HTML" target="_blank">HTML</a>,
+            <a href="https://en.wikipedia.org/wiki/CSS" target="_blank">CSS</a> and
+            <a href="https://en.wikipedia.org/wiki/JQuery" target="_blank">jQuery</a>), we try to build an "INTERACTIVE"
+            webpage (mostly, for learning purposes).
+            Here, we want to build a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+                target="_blank">tree</a>:
+        </p>
+        <ul>
+            <li>ARBITRARY number of children for each node (<a href="#tree-structure-code">code</a>)</li>
+            <li>
+                <font color="red"><b>Display - <a href=" #tree-display">graphically</a> - the <a
+                            href="https://en.wikipedia.org/wiki/Tree_(data_structure)" target="_blank">tree</a>'s
+                        structure!!!!</b>
+                </font>
+            </li>
+            <li>Show - graphically - the "<a href="https://en.wikipedia.org/wiki/Path_(computing)"
+                    target="_blank">PATH</a>" to
+                a node (by clicking on it): very useful to provide a lot of information - graphically (a kind of
+                map) - to the users...</li>
+        </ul>
+        <div class="container-note">
+            <p><u><b>Note:</b></u></p>
+            <ul>
+                <li>The results showed are the <b><u>REAL</u></b> results
+                    (<font color="red"><b><u>generated</u></b></font>
+                    randomly - <a href="./script/generation.js" target="_blank">code here</a> - <b>EVERYTIME</b> the
+                    page
+                    is
+                    opened/refreshed or the number of nodes had been changed by the user...), so, we don't have a same
+                    <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)" target="_blank">tree</a>
+                    twice. <b>Why</b>? Because we want to see that
+                    the program works for "any" situation, NOT only with a <b><u>statical</u></b> situation one...
+                </li>
+                <li>For testing, 50,000 nodes had been created: it took about 8 seconds to get the result (using a
+                    laptop with I5 microprocessor and 16 GB of RAM).
+                    So, with data (for the nodes) retrieving from a <a href="https://en.wikipedia.org/wiki/Database"
+                        target="_blank">database</a>, we
+                    could get a result much faster (no generation of nodes: with another program, using <a
+                        href="https://en.wikipedia.org/wiki/Database" target="_blank">database</a>,
+                    with more than 600,000 nodes, the <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+                        target="_blank">tree</a> was also built in about 8 seconds too)...
+                </li>
+            </ul>
+        </div>
+    </div>
+    <br />
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <h3 align="center" id="table-of-content">Table of Contents</h3>
+                <hr />
+                <ul>
+                    <li><a href="#tree-structure-code">The Structure of a <a
+                                href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+                                target="_blank">Tree</a>...</a></li>
+                    <li><a href="#toc-chapter">An example of TOC's format</a></li>
+                    <li><a href=" #tree-display">A <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+                                target="_blank">Tree</a> Could be displayed as</a></li>
+                    <li><a href=" #customized_num_node">I want to set up MY own number of nodes...</a></li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <br />
+
+    <h2 id="tree-structure-code">The Structure of a Tree... (<a href="#table-of-content">Table of Contents</a>)</h2>
+    <p>The global structure is:</p>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <pre><code>let <font color="navy"><b>tree</b></font> = {
+<font color="cyan">|</font>    "<font color="navy"><b>rootId</b></font>": <i>root_id</i>,
+<font color="cyan">|</font>    "<font color="navy"><b>nodes</b></font>": {
+<font color="cyan">|</font>    <font color="cyan">|</font>    "<font color="navy"><b>nodeId</b></font>": { // &larr; <font color="red"><b>a node id</b></font>...
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    "<font color="navy"><b>name</b></font>": <i>node_name</i>,
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    // the node's parent
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    "<font color="navy"><b>parentId</b></font>": <i>parent_id</i>,
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    // the node's children...
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    "<font color="navy"><b>childrenIds</b></font>": [<i>child1_Id</i>, <i>child2_Id</i>],
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    // the node's position, relative to its siblings...
+<font color="cyan">|</font>    <font color="cyan">|</font>    <font color="cyan">|</font>    "<font color="navy"><b>position</b></font>": <i>2</i>
+<font color="cyan">|</font>    <font color="cyan">|</font>    },
+<font color="cyan">|</font>    }
+}
+</code></pre>
+            </td>
+        </tr>
+    </table>
+    <p><b><u>Note:</u></b> the "<i>nodeIds</i>" are numbers because, mostly, they are "<i>primary keys</i>" which are -
+        mostly - an "<i>integer</i>"
+        (of course, it could be another form, like, "<i>UUIDv4</i>" for example), generated by the database...</p>
+    <p>Given a total number of the <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+            target="_blank">tree</a>'s nodes (the user could enter his/her number of nodes
+        <a href="#customized_num_node">here</a>) the program will <a href="./script/generation.js"
+            target="_blank">generate</a> a <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+            target="_blank">tree</a>, the nodes
+        are created and put ARBITRARY (randomly) in the <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)"
+            target="_blank">tree</a>...
+    </p>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <h2 align="center" title="Click to see a full example!">Code in JSON
+                    format...</h2>
+                <hr />
+                <pre><code id="generated_tree_code"></code></pre>
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <h2 id="toc-chapter">An example of TOC's format (<a href="./script/calculations.js" target="_blank">code</a>, at
+        "<b>buildTOC</b>") (<a href="#table-of-content">Table of Contents</a>)</h2>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <h3>// Tree with <font color="red"><b><span id="nb_nodes2"></span> nodes</b></font>
+                </h3>
+                <span id="tree_toc_format"></span>
+            </td>
+        </tr>
+    </table>
+
+    <hr />
+    <h2 id="tree-display">A <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)" target="_blank">Tree</a> Could
+        be displayed as (<a href="#table-of-content">Table of Contents</a>)</h2>
+    <h3 align="center">
+        <font color="red"><b>Interactive Tree, Click on any Node to See its Path...</b></font>
+    </h3>
+    <table align="center" border="1">
+        <tr>
+            <td>
+                <h2 align="center" id="tree-structure-code" title="Click to see a real generated tree!">Image of a
+                    <a href="https://en.wikipedia.org/wiki/Tree_(data_structure)" target="_blank">Tree</a>... with <font
+                        color="red"><b><span id="nb_nodes"></span> nodes</b></font>
+                </h2>
+                <span id="path_area"></span>
+                <br />
+                <span id="tree_displayed_structure"></span>
+            </td>
+        </tr>
+    </table>
+
+    <p>To be able to display, we need to transform the <a href="#tree-structure-code">tree</a> in to a
+        "<a href="#toc-chapter">TOC format</a>"
+        (<a href="./script/calculations.js" target="_blank">code</a>, at "<b>buildTOC</b>") before to <a
+            href="./script/display.js" target="_blank">display</a> it...</p>
+
+    <p><b><u>Note:</u></b> the "<a href="#toc-chapter">TOC format</a>" is just a - customized - format for this program,
+        not a
+        normalized one...</p>
+    <hr />
+    <h2 id="customized_num_node">I want to set up MY own number of nodes... (<a href="#table-of-content">Table of
+            Contents</a>)</h2>
+    <h3 align="center">
+        <font color="red"><b>Enter your own Number of Nodes here...</b></font>
+    </h3>
+    <table border="1" align="center">
+        <tr>
+            <td>
+                <br />
+                <div><b>Total Nodes</b> (Between <b><span id="minNodeNum"></span></b> and <b><span
+                            id="maxNodeNum"></span></b>) <input type="text" id="nodesNum"><br></div>
+                <br />
+                <p align="center"><button class="btn" type="button" id="getNodesNum">Done</button></p>
+                <h3 align="center" id="newTreeInfos"></h3>
+            </td>
+        </tr>
+    </table>
+    <br /><br />
+    <div class="container-note"><b><u>Note:</u></b>
+        <ul>
+            <li>The total number of nodes is limited (voluntarily) between <b><span id="minSizeNote"></span></b> and
+                <b><span id="maxSizeNote"></span></b> so we could see the structures, bigger (or smaller) size, won't
+                help us to understand
+                the concept, it would be rather confusing (have tried with 50,000 nodes, it works perfectly ;-)). Of
+                course, if you like "danger", please, feel free to
+                change the
+                appropriated value in the file <a href="./script/cstsNVars.js"
+                    target="_blank">cstsNVars.js</a>...<br /><br />
+            </li>
+            <li>As we don't use any "<a href="https://en.wikipedia.org/wiki/Database" target="_blank">database</a>" to
+                store any customized number of nodes, so, everytime we're refreshing
+                the page, the predefined number
+                of nodes (<b><span id="predefinedNodesNum"></span></b>) will be used (of course, we could use
+                "<b><i>localStorage</i></b>" or other solutions to record the user's choices) but
+                that would be a detail non relevant for our study...</li>
+        </ul>
+    </div>
+    <br />
+
+    <script>
+        $(document).ready(function () {
+
+            document.getElementById("minSizeNote").innerHTML = _minSize.toString()
+            document.getElementById("maxSizeNote").innerHTML = _maxSize.toString()
+
+            document.getElementById("minNodeNum").innerHTML = _minSize.toString()
+            document.getElementById("maxNodeNum").innerHTML = _maxSize.toString()
+
+            document.getElementById("predefinedNodesNum").innerHTML = _totalNodesCst.toString()
+            let globalToc = []
+
+            let nodeIds = globalTree.nodes !== undefined ? Object.keys(globalTree.nodes) : []
+
+            const setActive = () => {
+                if (path.length > 0)
+                    document.getElementById("path_area").innerHTML = showPath()
+                else document.getElementById("path_area").innerHTML = ""
+                nodeIds.forEach(nodeId => {
+                    $("#" + nodeId).click(() => {
+                        setPath(parseInt(nodeId, 10))
+                        document.getElementById("tree_displayed_structure").innerHTML = display(globalToc)
+                        setActive()
+
+                    })
+                })
+            }
+
+            const showTree = () => {
+                path = []
+
+                globalTree = buildTree(_totalNodes)
+                nodeIds = globalTree.nodes !== undefined ? Object.keys(globalTree.nodes) : []
+                // const globalToc = buildTocNoRecc()
+
+                globalToc = buildTOCRecc()
+                document.getElementById("nb_nodes2").innerHTML = _totalNodes.toString()
+                document.getElementById("generated_tree_code").innerHTML =
+                    "// Generated tree with <font color='red'><b>" + _totalNodes +
+                    " nodes</b></font><br/>const globalTree = " + JSON.stringify(globalTree, null, 3)
+                document.getElementById("tree_toc_format").innerHTML = displayTocStruct(globalToc)
+                document.getElementById("tree_displayed_structure").innerHTML = display(globalToc)
+                document.getElementById("nb_nodes").innerHTML = _totalNodes
+                setActive()
+            }
+
+            showTree()
+
+
+            $("#getNodesNum").click(() => {
+                const num = $("#nodesNum").val()
+                if (!isNaN(num)) {
+                    _totalNodes = parseInt(num, 10)
+                    if (_totalNodes >= _minSize && _totalNodes <= _maxSize) {
+                        document.getElementById("newTreeInfos").innerHTML = '<font color="red"><b>(A tree with <font color="black">' + _totalNodes +
+                            '</font> nodes had been generated)</b></font>'
+
+                        $("#nodesNum").val(_totalNodes)
+                    }
+                    else document.getElementById("newTreeInfos").innerHTML = "(The number must between <b>" + _minSize + "</b> and <b>" + _maxSize + "</b>)"
+                    showTree()
+                }
+                else {
+                    $("#nodesNum").val(_totalNodes)
+                    alert("Number of nodes MUST be a number!")
+                }
+            });
+
+            $(document).on('keypress', function (e) {
+                if (e.which == 13) {
+                    const num = $("#nodesNum").val()
+                    if (!isNaN(num)) {
+                        _totalNodes = parseInt($("#nodesNum").val(), 10)
+                        if (_totalNodes >= _minSize && _totalNodes <= _maxSize) {
+                            document.getElementById("newTreeInfos").innerHTML = '<font color="red"><b>(A tree with <font color="black">' + _totalNodes +
+                                '</font> nodes had been generated)</b></font>'
+                            $("#nodesNum").val(_totalNodes)
+                        }
+                        else document.getElementById("newTreeInfos").innerHTML = "(The number must between <b>" + _minSize + "</b> and <b>" + _maxSize + "</b>)"
+                        showTree()
+                    }
+                    else {
+                        $("#nodesNum").val(_totalNodes)
+                        alert("Number of nodes MUST be a number!")
+                    }
+                }
+            });
+
+            $("#nodesNum").val(_totalNodes)
+        });
+
+    </script>
+</body>
+
+</html>
